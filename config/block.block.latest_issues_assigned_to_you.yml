@@ -1,0 +1,20 @@
+uuid: 0edc3304-0151-498c-96a5-5974e69b45bc
+langcode: en
+status: true
+dependencies:
+  module:
+    - issue_tracking_system
+  theme:
+    - olivero
+id: latest_issues_assigned_to_you
+theme: olivero
+region: sidebar
+weight: 0
+provider: null
+plugin: current_users_latest_issues_block
+settings:
+  id: current_users_latest_issues_block
+  label: 'Latest Issues Assigned To You'
+  label_display: visible
+  provider: issue_tracking_system
+visibility: {  }

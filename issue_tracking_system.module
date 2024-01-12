@@ -1,0 +1,26 @@
+<?php
+
+/**
+ * @file
+ * Implements hook_form_alter().
+ */
+
+use Drupal\user\Entity\User;
+
+/**
+ * Implements hook_form_alter().
+ *
+ * Set the default value for the 'field_issue_reporter' field & 
+ * make it non-editable for user.
+ */
+function issue_tracking_system_form_alter(&$form, &$form_state, $form_id) {
+  // Check if the form is for the 'issue' content type.
+  if ($form_id == 'node_issue_form') {
+    // Set the default value for the 'field_issue_reporter' field.
+    $current_user = \Drupal::currentUser();
+    $user_entity = User::load($current_user->id());
+    // Set the entity object as the default value.
+    $form['field_issue_reporter']['widget'][0]['target_id']['#default_value'] = $user_entity;
+    $form['field_issue_reporter']['#disabled'] = TRUE;
+  }
+}
